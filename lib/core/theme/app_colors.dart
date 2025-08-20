@@ -6,6 +6,8 @@ class AppColors {
   static const Color backgroundLight = Color(0xFFF5FBEF); // very light green
   static const Color backgroundgreen = Color(0xFF609966); // corrected hex
 
+  static const Color backgroundColor = Color(0xFF9DC08B); // primary color
+
   // text colors
   static const Color textgrey = Color(0xFF3E3E3E);
   static const Color textwhite = Color(0xFFFFFFFF);

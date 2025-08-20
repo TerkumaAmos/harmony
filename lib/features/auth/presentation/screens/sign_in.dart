@@ -4,6 +4,8 @@ import 'package:harmony_hush/core/theme/app_colors.dart';
 import 'package:harmony_hush/shared/widgets/buttons/primary_button.dart';
 import 'package:harmony_hush/shared/widgets/inputs/harmony_inputs.dart';
 import 'package:harmony_hush/shared/widgets/layouts/custom_back_button.dart';
+import 'package:go_router/go_router.dart'; // Import GoRouter
+
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -28,7 +30,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomBackButton(),
+                  child: CustomBackButton(
+                     onPressed: () {
+                    context.go('/onboard'); // GoRouter: go back to previous screen
+                  },
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -116,7 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                   
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Text('forgot Password?',style: GoogleFonts.inter(fontSize: 12,color:AppColors.textgrey),),
         )
               ],),
@@ -127,7 +133,7 @@ class _SignInScreenState extends State<SignInScreen> {
               //  log(  'Get Started button pressed');
               },
               label: 'SIGN IN',
-              width: 335,
+              width: 360,
               height: 60,
              
             ),
@@ -137,7 +143,11 @@ class _SignInScreenState extends State<SignInScreen> {
               children: [Text('If you dont\' have an account?',style: GoogleFonts.inter(fontSize: 14,color: AppColors.textgrey
             ),
             ),
-            Text('SIGN UP',style: GoogleFonts.inter(fontSize: 14,color: AppColors.inputText),)],)
+            GestureDetector(
+               onTap: () {
+                  context.go('/signUp'); // Navigate to sign in page
+                },
+              child: Text('SIGN UP',style: GoogleFonts.inter(fontSize: 14,color: AppColors.inputText),))],)
             ],
           ),
         ),

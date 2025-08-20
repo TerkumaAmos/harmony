@@ -151,8 +151,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             SizedBox(height: 80),
             PrimaryButton(
-            onPressed: () {
-            //  log(  'Get Started button pressed');
+           onPressed: () {
+              context.go('/signUp'); // Navigate to sign up page
             },
             label: 'SIGN UP',
             width: 320,
