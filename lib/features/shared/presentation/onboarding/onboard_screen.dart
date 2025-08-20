@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:harmony_hush/core/theme/app_colors.dart';
 import 'package:harmony_hush/shared/widgets/buttons/primary_button.dart';
+import 'package:go_router/go_router.dart'; // Import GoRouter
 
 class OnboardScreen extends StatelessWidget {
   const OnboardScreen({super.key});
@@ -14,36 +15,49 @@ class OnboardScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundLight,
       body: Column(
         children: [
-          SizedBox(height:200), 
+          SizedBox(height: 200),
           Padding(
             padding: const EdgeInsets.only(bottom: 0),
             child: Image(image: AssetImage('assets/img/meditation.png')),
           ),
-                      SizedBox(height: 100,),
-
-          Text('We are What we do',style:GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 22),),
-                                SizedBox(height: 30,),
-
-          Text('Foster global peace and well being through\n accessible, guided meditation practices.',style:GoogleFonts.inter(fontSize: 14,color: AppColors.textgrey),),
-          SizedBox(height: 30,),
+          SizedBox(height: 100),
+          Text(
+            'We are What we do',
+            style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 22),
+          ),
+          SizedBox(height: 30),
+          Text(
+            'Foster global peace and well being through\n accessible, guided meditation practices.',
+            style: GoogleFonts.inter(fontSize: 14, color: AppColors.textgrey),
+          ),
+          SizedBox(height: 30),
           PrimaryButton(
             onPressed: () {
-              log(  'Get Started button pressed');
+              context.go('/signUp'); // Navigate to sign up page
             },
-            label: 'Get Started',
+            label: 'SIGN UP',
             width: 320,
             height: 55,
-           
           ),
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            
-            Text('Already have an account?',style:GoogleFonts.inter(fontSize: 14,color: AppColors.textgrey),),
-            Text(' Sign In',style:GoogleFonts.inter(fontSize: 14,color: AppColors.textgreen),)
-          ],)
-
+              Text(
+                'Already have an account?',
+                style: GoogleFonts.inter(fontSize: 14, color: AppColors.textgrey),
+              ),
+              GestureDetector(
+                onTap: () {
+                  context.go('/signIn'); // Navigate to sign in page
+                },
+                child: Text(
+                  ' SIGN IN',
+                  style: GoogleFonts.inter(fontSize: 14, color: AppColors.textgreen, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

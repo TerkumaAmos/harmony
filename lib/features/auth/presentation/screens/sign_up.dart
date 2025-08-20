@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:harmony_hush/core/theme/app_colors.dart';
 import 'package:harmony_hush/shared/widgets/buttons/primary_button.dart';
@@ -26,7 +27,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: CustomBackButton(),
+                child: CustomBackButton(
+                  onPressed: () {
+                    context.go('/onboard'); // GoRouter: go back to previous screen
+                  },
+                  
+                )
+              ,
               ),
             ),
             SizedBox(height: 10),
@@ -116,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal:20.0),
+              padding: const EdgeInsets.symmetric(horizontal:50.0),
               child: Row(
                 children: [
                   Text('I have read the ', style: GoogleFonts.inter(color: AppColors.textgrey)),
