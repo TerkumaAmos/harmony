@@ -13,7 +13,7 @@ class RouteNames {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: '/signIn',
+  initialLocation: '/onboard', // This is the default screen after restart
   routes: [
     GoRoute(
       path: '/signIn',
