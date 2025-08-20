@@ -5,7 +5,6 @@ class CirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final maxRadius = size.width / 2; 
 
     final paint1 = Paint()..color = AppColors.backgroundgreen; 
     final paint2 = Paint()..color =Color(0xFF3C6255);
