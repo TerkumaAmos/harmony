@@ -55,13 +55,13 @@ class _SignInScreenState extends State<SignInScreen> {
         default:
           errorMessage = 'An error occurred. Please try again.';
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage)),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text(errorMessage)),
+      // );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An unexpected error occurred.')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('An unexpected error occurred.')),
+      // );
     } finally {
       setState(() {
         _isLoading = false;
@@ -71,9 +71,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Future<void> _resetPassword() async {
     if (_emailController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter your email to reset password.')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('Please enter your email to reset password.')),
+      // );
       return;
     }
 
@@ -81,9 +81,9 @@ class _SignInScreenState extends State<SignInScreen> {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: _emailController.text.trim(),
       );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Password reset email sent.')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('Password reset email sent.')),
+      // );
     } on FirebaseAuthException catch (e) {
       String errorMessage;
       switch (e.code) {
@@ -96,9 +96,9 @@ class _SignInScreenState extends State<SignInScreen> {
         default:
           errorMessage = 'An error occurred. Please try again.';
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage)),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text(errorMessage)),
+      // );
     }
   }
 

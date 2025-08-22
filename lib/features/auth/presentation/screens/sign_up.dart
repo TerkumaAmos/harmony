@@ -46,12 +46,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      await FirebaseAuth.instance.currentUser?.updateDisplayName(_nameController.text.trim());
-      context.go('/welcome');
+      await userCredential.user?.updateDisplayName(_nameController.text.trim());
+      // Send email verification
+      await userCredential.user?.sendEmailVerification();
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('Verification email sent. Please check your inbox.')),
+      // );
+      context.go('/welcome'); // Navigate even if unverified (adjust as needed)
     } on FirebaseAuthException catch (e) {
       String errorMessage;
       switch (e.code) {
@@ -166,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 20),
                 HarmonyInput(
                   controller: _emailController,
-                  topLabel: 'Email address',
+                //  topLabel: 'Email address',
                   hintText: 'Enter your email',
                   type: InputType.email,
                   keyboardType: TextInputType.emailAddress,
@@ -174,7 +179,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 20),
                 HarmonyInput(
                   controller: _nameController,
-                  topLabel: 'Name',
+               //   topLabel: 'Name',
                   hintText: 'Enter your name',
                   type: InputType.text,
                   keyboardType: TextInputType.text,
@@ -191,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 20),
                 HarmonyInput(
                   controller: _passwordController,
-                  topLabel: 'Password',
+                 // topLabel: 'Password',
                   hintText: 'Enter your password',
                   type: InputType.password,
                   keyboardType: TextInputType.text,
@@ -199,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 20),
                 HarmonyInput(
                   controller: _confirmPasswordController,
-                  topLabel: 'Confirm Password',
+                //  topLabel: 'Confirm Password',
                   hintText: 'Confirm your password',
                   type: InputType.password,
                   confirmAgainst: _passwordController,
