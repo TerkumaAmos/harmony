@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:harmony_hush/core/theme/app_colors.dart';
-import 'package:go_router/go_router.dart'; // Import GoRouter
+import 'package:firebase_core/firebase_core.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,9 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateToOnboard() async {
+    try {
+      await Firebase.initializeApp();
+    } catch (e) {
+      print('Firebase initialization error: $e');
+    }
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      context.go('/onboard'); // Use GoRouter to navigate
+      context.go('/onboard');
     }
   }
 
@@ -28,7 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Center(
-        child: Image(image: AssetImage('assets/img/Logo.png')),
+        child: Image.asset(
+          'assets/img/Logo.png',
+          width: 200,
+          height: 200,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

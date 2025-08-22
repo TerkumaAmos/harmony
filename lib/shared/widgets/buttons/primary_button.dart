@@ -12,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
   final Widget? icon;
   final Color? backgroundColor;
-  final Color? borderColor; // <-- Optional border color
+  final Color? borderColor;
 
   const PrimaryButton({
     super.key,
@@ -26,7 +26,7 @@ class PrimaryButton extends StatelessWidget {
     this.borderRadius,
     this.icon,
     this.backgroundColor,
-    this.borderColor, // <-- Add this
+    this.borderColor,
   });
 
   @override
@@ -56,6 +56,7 @@ class PrimaryButton extends StatelessWidget {
                       ? AppColors.backgroundgreen
                       : AppColors.textwhite,
                   fontWeight: FontWeight.w600,
+                  fontSize: 16, // Increased font size
                 ),
               ),
             ],
@@ -63,7 +64,7 @@ class PrimaryButton extends StatelessWidget {
 
     return SizedBox(
       width: width ?? double.infinity,
-      height: height ?? 36,
+      height: height ?? 60, // Increased default height from 36 to 60
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(

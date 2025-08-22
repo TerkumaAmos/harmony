@@ -55,37 +55,48 @@ class _HarmonyInputState extends State<HarmonyInput> {
     final isPassword = widget.type == InputType.password;
 
     final inputField = SizedBox(
-      width: 360, // Set width
-      height: 51, // Set height
+      width: 360,
+      height: 60, // Increased height from 51 to 60
       child: TextFormField(
         controller: widget.controller,
         obscureText: isPassword ? _obscureText : false,
         style: TextStyle(
-          color: AppColors.inputText, // Muted green text
-          fontSize: 12, // Change this to your desired input text size
+          color: AppColors.inputText,
+          fontSize: 16, // Increased from 12 to 16
         ),
         decoration: InputDecoration(
-          labelText: widget.labelText,
-          hintText: widget.hintText,
+          hintText: widget.hintText, // Use hintText only
           prefixIcon: widget.prefixIcon,
           suffixIcon: _getSuffixIcon(),
           filled: true,
-          fillColor: AppColors.inputBackground, // Soft green background
+          fillColor: AppColors.inputBackground,
           contentPadding: const EdgeInsets.symmetric(
             vertical: 12,
             horizontal: 16,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(24), // Rounded corners
+            borderRadius: BorderRadius.circular(24),
             borderSide: BorderSide.none,
-          ),
-          labelStyle: TextStyle(
-            color: AppColors.inputText, // Muted green text
-            fontSize: 18,
           ),
           hintStyle: TextStyle(
             color: AppColors.inputText.withOpacity(0.7),
-            fontSize: 18,
+            fontSize: 16, // Increased from 18 to match style
+          ),
+          errorStyle: TextStyle(
+            color: Colors.redAccent,
+            fontSize: 12,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide(color: AppColors.backgroundgreen, width: 2),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide(color: Colors.redAccent, width: 2),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide(color: Colors.redAccent, width: 2),
           ),
         ),
         keyboardType: widget.keyboardType ?? _getKeyboardType(),
@@ -103,14 +114,14 @@ class _HarmonyInputState extends State<HarmonyInput> {
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0), // Space from margin
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: widget.topLabel != null
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.topLabel!,
-                  style: TextStyle(fontSize: 12, color: AppColors.textgreen),
+                  style: TextStyle(fontSize: 14, color: AppColors.textgreen),
                 ),
                 const SizedBox(height: 8),
                 inputField,
@@ -127,7 +138,7 @@ class _HarmonyInputState extends State<HarmonyInput> {
       return IconButton(
         icon: Icon(
           _obscureText ? Icons.visibility_off : Icons.visibility,
-          color: AppColors.inputText, // Muted green icon
+          color: AppColors.inputText,
         ),
         onPressed: () {
           setState(() {
@@ -191,4 +202,7 @@ class _HarmonyInputState extends State<HarmonyInput> {
           return null;
         };
       default:
-        return null; }}}
+        return null;
+    }
+  }
+}

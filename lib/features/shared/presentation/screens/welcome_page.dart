@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:harmony_hush/core/theme/app_colors.dart';
 import 'package:harmony_hush/features/shared/widgets/Custompaint/circle_painter.dart';
+import 'package:harmony_hush/shared/widgets/buttons/primary_button.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -8,6 +11,8 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final user = FirebaseAuth.instance.currentUser;
+    final displayName = user?.displayName ?? 'User';
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -30,16 +35,15 @@ class WelcomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              // Welcome Text
               Text(
-                'Hi Agber Amos! Welcome\n         to Harmony Hush',
+                'Hi $displayName! Welcome\nto Harmony Hush',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textwhite,
                 ),
               ),
-              // Subtitle Text
               Text(
                 'Explore inner Peace, One Meditation at a Time',
                 style: TextStyle(
@@ -47,7 +51,6 @@ class WelcomePage extends StatelessWidget {
                   color: AppColors.textgrey,
                 ),
               ),
-              // Second Stack (Image at bottom-right)
               SizedBox(
                 height: 300,
                 child: Stack(
@@ -69,12 +72,10 @@ class WelcomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              // CirclePainter with image on top
               SizedBox(
                 height: 300,
                 child: Stack(
                   children: [
-                    // Ensure CustomPaint maintains its size
                     Container(
                       width: 300,
                       height: 300,
@@ -83,7 +84,6 @@ class WelcomePage extends StatelessWidget {
                         painter: CirclePainter(),
                       ),
                     ),
-                    // First image on top of the circles
                     Positioned(
                       top: 20,
                       left: 0,
@@ -97,9 +97,16 @@ class WelcomePage extends StatelessWidget {
                   ],
                 ),
               ),
+              PrimaryButton(
+                onPressed: () {
+                  context.go('/home');
+                },
+                label: 'GET STARTED',
+                width: 360,
+                height: 60,
+              ),
             ],
           ),
-          // Circular green block from the bottom, full width
           Positioned(
             bottom: -180,
             left: 0,
@@ -113,14 +120,13 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
           ),
-          // Large girl.png image on top of the green container and CirclePainter
           Positioned(
-            bottom: 140, // Adjust to sit on the green container
-            left: (screenWidth -290) / 2, // Center horizontally
+            bottom: 140,
+            left: (screenWidth - 290) / 2,
             child: Image.asset(
               'assets/img/girl.png',
-              height: 300, // Larger size
-              width: 300,  // Larger size
+              height: 300,
+              width: 300,
               filterQuality: FilterQuality.medium,
             ),
           ),
