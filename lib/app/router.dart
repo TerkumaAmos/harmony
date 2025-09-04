@@ -15,7 +15,7 @@ class RouteNames {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: '/splash', // This is the default screen after restart
+  initialLocation: '/signIn', 
   routes: [
     GoRoute(
       path: '/signIn',

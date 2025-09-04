@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +17,7 @@ class OnboardScreen extends StatelessWidget {
           SizedBox(height: 200),
           Padding(
             padding: const EdgeInsets.only(bottom: 0),
-            child: Image(image: AssetImage('assets/img/meditation.png')),
+        child: Image(image: AssetImage('assets/img/meditation.png')),
           ),
           SizedBox(height: 100),
           Text(
@@ -33,7 +32,7 @@ class OnboardScreen extends StatelessWidget {
           SizedBox(height: 30),
           PrimaryButton(
             onPressed: () {
-              context.go('/signUp'); // Navigate to sign up page
+              context.go('/signUp'); 
             },
             label: 'SIGN UP',
             width: 320,
@@ -49,7 +48,7 @@ class OnboardScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  context.go('/signIn'); // Navigate to sign in page
+                  context.go('/signIn');
                 },
                 child: Text(
                   ' SIGN IN',

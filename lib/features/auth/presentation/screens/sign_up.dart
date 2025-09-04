@@ -226,12 +226,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onChanged: (value) {
                             setState(() {
                               isChecked = value ?? false;
-                            });
+                            }
+                            
+                            );
                           },
                           side: BorderSide(color: AppColors.backgroundgreen, width: 2),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4),
                           ),
+                          fillColor: WidgetStateProperty.resolveWith<Color?>(
+                          (Set<WidgetState> states) {
+                            if (states.contains(WidgetState.selected)) {
+                              return Colors.black; // Color when checked
+                            }
+                            return AppColors.transparent; // Color when unchecked
+                          },),
                         ),
                       ),
                     ],
